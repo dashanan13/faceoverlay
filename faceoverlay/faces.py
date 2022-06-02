@@ -20,7 +20,7 @@ def detectAndDisplay(frame, overlayimage):
     width = frame.shape[1]
     
     #ratio
-    rtio = (screen_width/2)/width
+    rtio = (screen_width)/width
 
     #new frame dimension 
     frame_ndim = (int(width*rtio), int(height*rtio))
