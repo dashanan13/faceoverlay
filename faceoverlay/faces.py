@@ -84,6 +84,8 @@ if not eyes_cascade.load(cv.samples.findFile(eyes_cascade_name)):
 camera_device = args.camera
 #-- 2. Read the video stream
 cap = cv.VideoCapture(camera_device)
+mycounter = 0
+overlay_file = "overlay1.png"
 if not cap.isOpened:
     print('--(!)Error opening video capture')
     exit(0)
@@ -93,14 +95,15 @@ while True:
     if frame is None:
         print('--(!) No captured frame -- Break!')
         break
-
-
-    # randomize input image
-    val = randint(1, 5)
-    overlay_file = "overlay" + str(val) + ".png"
-    print(overlay_file)
-
-    detectAndDisplay(frame)
+    
+    mycounter = mycounter + 1
+    if ((mycounter % 10) > 8):
+        # randomize input image
+        val = randint(1, 5)
+        overlay_file = "overlay" + str(val) + ".png"
+        print(overlay_file)
+    print(mycounter)
+    detectAndDisplay(frame, overlay_file)
 
     if cv.waitKey(10) == 27:
         break
